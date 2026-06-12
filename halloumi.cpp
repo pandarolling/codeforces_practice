@@ -1,7 +1,13 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
 
+bool non_decreasing(int arr[], int len){
+	for(int i = 0; i < len -1; i++){
+		if(arr[i] > arr[i+1])
+			return false;
+	}
+	return true;
+}
 int main(){
 
 	int tt;
@@ -10,40 +16,17 @@ int main(){
 	while(tt--){
 		int n, k ;
 		cin >> n >> k;
-		vector<int> nums(n);
-		int i =0;
+		int arr[n];
 		for(int i =0; i < n; i++){
-			cin >> nums[i];
+			cin >> arr[i];
 		}
 
-		if(is_sorted(nums.begin(), nums.end())){
-			cout<< "YES" <<endl;
-			continue;
+		if(k > 1 || non_decreasing(arr, n)){
+			cout<< "YES\n";
+		}else{
+			cout<< "NO\n";
 		}
 
-		if(is_sorted(nums.begin(), nums.end(), greater<int>()) && n == k ){
-			cout<< "YES" <<endl;
-			continue;
-		}
-		i =0;
-		int cnt=0;
-		while(i < nums.size()-1){
-			if (nums[i] > nums[i+1]){
-				reverse(nums.begin() + i, nums.begin()+i+1);
-				cnt++;
-			}
-			i++;
-		}
-
-		if(cnt <= k){
-			cout<< "YES" <<endl;
-			continue;
-		}
-
-		if(k <=1){
-			cout<< "NO" <<endl;
-			continue;
-		}
 	}
 
 
